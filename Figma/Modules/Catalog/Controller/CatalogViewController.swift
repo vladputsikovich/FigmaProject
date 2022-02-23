@@ -95,6 +95,7 @@ class CatalogViewController: UIViewController {
             
             contentView.topAnchor.constraint(equalTo: catalogScrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: catalogScrollView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
             contentView.centerXAnchor.constraint(equalTo: catalogScrollView.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: catalogScrollView.centerYAnchor),
             
@@ -135,6 +136,7 @@ class CatalogViewController: UIViewController {
         let constraints = [
             topProductContentView.topAnchor.constraint(equalTo: topProductScrollView.topAnchor),
             topProductContentView.leadingAnchor.constraint(equalTo: topProductScrollView.leadingAnchor),
+            topProductContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topProductContentView.centerXAnchor.constraint(equalTo: topProductScrollView.centerXAnchor),
             topProductContentView.centerYAnchor.constraint(equalTo: topProductScrollView.centerYAnchor),
             
