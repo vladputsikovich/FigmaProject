@@ -7,14 +7,29 @@
 
 import UIKit
 
+// MARK: Comment struct
+
+struct Comment {
+    var image: UIImage
+    var nameAuthor: String
+    var date: String
+    var grade: String
+    var commentText: String
+    var detailComment: String
+}
+
 class CommentCell: UITableViewCell {
 
-    var image = UIImageView()
-    var nameAuthor =  UILabel()
-    var date = UILabel()
-    var grade = UILabel()
-    var comment = UILabel()
-    var detailComment = UILabel()
+    // MARK: Properties
+    
+    private let image = UIImageView()
+    private let nameAuthor =  UILabel()
+    private let date = UILabel()
+    private let grade = UILabel()
+    private let commentText = UILabel()
+    private let detailComment = UILabel()
+    
+    // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,6 +44,8 @@ class CommentCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Func for create Ui elements
     
     private func createImage() {
         addSubview(image)
@@ -87,13 +104,13 @@ class CommentCell: UITableViewCell {
     }
     
     private func createComment() {
-        addSubview(comment)
-        comment.font = .systemFont(ofSize: 20, weight: .bold)
-        comment.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(commentText)
+        commentText.font = .systemFont(ofSize: 20, weight: .bold)
+        commentText.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            comment.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10),
-            comment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            commentText.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10),
+            commentText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -105,7 +122,7 @@ class CommentCell: UITableViewCell {
         detailComment.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            detailComment.topAnchor.constraint(equalTo: comment.bottomAnchor, constant: 15),
+            detailComment.topAnchor.constraint(equalTo: commentText.bottomAnchor, constant: 15),
             detailComment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             detailComment.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             detailComment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -114,4 +131,14 @@ class CommentCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 
+    // MARK: Config
+    
+    func congif(comment: Comment) {
+        image.image = comment.image
+        nameAuthor.text = comment.nameAuthor
+        date.text = comment.date
+        grade.text = comment.grade
+        commentText.text = comment.commentText
+        detailComment.text = comment.detailComment
+    }
 }

@@ -32,12 +32,16 @@ class LoginService {
     }
     
     func makeUserIsLogined(user: UserModel) {
-        lazy var realm = try! Realm(
-            configuration: .defaultConfiguration,
-            queue: .none
-        )
-        try! realm.write {
-            user.isLogined = true
+        do {
+            let realm = try Realm(
+                configuration: .defaultConfiguration,
+                queue: .none
+            )
+            try realm.write {
+                user.isLogined = true
+            }
+        } catch let error as NSError {
+            print(error)
         }
     }
 }

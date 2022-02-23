@@ -9,10 +9,14 @@ import UIKit
 
 class StoreCell: UITableViewCell {
 
+    // MARK: Properties
+    
     private let nameLabel = UILabel()
     private let streetLabel = UILabel()
     private let cityLabel = UILabel()
     private let numberLabel = UILabel()
+    
+    // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,6 +26,8 @@ class StoreCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Func for create Ui elemetnts
     
     private func createLabels() {
         addSubview(nameLabel)
@@ -61,11 +67,12 @@ class StoreCell: UITableViewCell {
         }
     }
     
+    // MARK: Setup
+    
     func setup(store: StoreAnotation) {
         nameLabel.text = store.name
         streetLabel.text = store.street
         cityLabel.text = store.city
         numberLabel.text = store.phoneNumber
     }
-
 }

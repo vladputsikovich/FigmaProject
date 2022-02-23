@@ -58,7 +58,7 @@ enum InfoFields {
 
 fileprivate struct Constants {
     static let cellIdentificator = "cell"
-    static let logOutButtonTitle = "Выйти" 
+    static let logOutButtonTitle = "Выйти"
 }
 
 class ProfileViewController: UIViewController {
@@ -169,12 +169,14 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = userInfoTableView.dequeueReusableCell(withIdentifier: Constants.cellIdentificator) as? UserInfoCell else { return UITableViewCell() }
-        cell.infoLabel.text = user?.createUserFields()[indexPath.item].title
-        cell.dataLabel.text = user?.createUserFields()[indexPath.item].value
+        let infoUser = InfoUser(
+            infoLabel: user?.createUserFields()[indexPath.item].title ?? "",
+            dataLabel: user?.createUserFields()[indexPath.item].value ?? ""
+        )
+        cell.config(info: infoUser)
         return cell
     }
 }
-
 
 fileprivate extension UserModel {
     func createUserFields() -> [InfoFields] {

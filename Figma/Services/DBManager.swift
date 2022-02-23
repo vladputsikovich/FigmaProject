@@ -17,26 +17,48 @@ protocol DBManager {
 
 class DBManagerImpl: DBManager {
     
-    fileprivate lazy var realm = try! Realm(
-        configuration: .defaultConfiguration,
-        queue: .none
-    )
+    fileprivate var realm: Realm {
+        get {
+            do {
+                let realm = try Realm(
+                  configuration: .defaultConfiguration,
+                  queue: .none
+                )
+                return realm
+            } catch let error as NSError {
+                print(error)
+            }
+            return self.realm
+        }
+    }
     
     func save<T: Object>(object: T) {
-        try! realm.write {
-            realm.add(object)
+        do {
+            try realm.write {
+                realm.add(object)
+            }
+        } catch let error as NSError {
+            print(error)
         }
     }
     
     func removeObject<T: Object>(object: T) {
-        try? realm.write {
-            realm.delete(object)
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch let error as NSError {
+            print(error)
         }
     }
     
     func clearAll() {
-        try! realm.write {
-            realm.deleteAll()
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch let error as NSError {
+            print(error)
         }
     }
     

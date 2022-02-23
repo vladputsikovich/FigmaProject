@@ -175,12 +175,15 @@ extension ProductViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = commentTable.dequeueReusableCell(withIdentifier: "cell") as? CommentCell else { return UITableViewCell()
         }
-        cell.image.image = UIImage(named: "man")
-        cell.nameAuthor.text = "ВЛда пуцыкосич"
-        cell.date.text = "10.08.2010"
-        cell.grade.text = "5★"
-        cell.comment.text = "Все круто"
-        cell.detailComment.text = "Заказал бысто доставили крутой магаз"
+        let comment = Comment(
+            image: UIImage(named: "man") ?? UIImage(),
+            nameAuthor: "ВЛда пуцыкосич",
+            date: "10.08.2010",
+            grade: "5★",
+            commentText: "Все круто",
+            detailComment: "Заказал бысто доставили крутой магаз"
+        )
+        cell.congif(comment: comment)
         return cell
     }
     

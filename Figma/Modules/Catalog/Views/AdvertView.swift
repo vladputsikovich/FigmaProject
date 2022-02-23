@@ -8,7 +8,12 @@
 import UIKit
 
 class AdvertView: UIView {
+    
+    // MARK: Properties
+    
     private let imageView = UIImageView()
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,6 +25,8 @@ class AdvertView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: Func for create UI elements
+    
     private func createImage() {
         addSubview(imageView)
         imageView.clipsToBounds = true
@@ -37,6 +44,8 @@ class AdvertView: UIView {
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+    // MARK: Config
     
     func configOf(advert: Advert) {
         imageView.image = advert.image

@@ -8,10 +8,19 @@
 import UIKit
 import SnapKit
 
+struct InfoUser {
+    var infoLabel: String
+    var dataLabel: String
+}
+
 class UserInfoCell: UITableViewCell {
 
-    var infoLabel = UILabel()
-    var dataLabel = UILabel()
+    // MARK: Properties
+    
+    private let infoLabel = UILabel()
+    private let dataLabel = UILabel()
+    
+    // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,7 +31,9 @@ class UserInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func createLabels() {
+    // MARK: Func for create UI elements
+    
+    private func createLabels() {
         addSubview(infoLabel)
         addSubview(dataLabel)
         
@@ -43,5 +54,12 @@ class UserInfoCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(frame.height / 5)
             make.right.equalToSuperview().inset(frame.height / 6)
         }
+    }
+    
+    // MARK: Congig
+    
+    func config(info: InfoUser) {
+        infoLabel.text = info.infoLabel
+        dataLabel.text = info.dataLabel
     }
 }

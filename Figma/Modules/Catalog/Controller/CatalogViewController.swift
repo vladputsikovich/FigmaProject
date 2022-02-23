@@ -21,7 +21,7 @@ fileprivate struct Constants {
 
 class CatalogViewController: UIViewController {
     
-    // MARK: Property
+    // MARK: Properties
     
     private let catalogStackView = UIStackView()
     private let catalogScrollView = UIScrollView()
@@ -90,7 +90,7 @@ class CatalogViewController: UIViewController {
         let contstraints = [
             catalogScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             catalogScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            catalogScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            catalogScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             catalogScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             contentView.topAnchor.constraint(equalTo: catalogScrollView.topAnchor),
@@ -159,7 +159,7 @@ class CatalogViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
         menu.products.forEach { product in
-            let productView = ProductView()
+            let productView = ProductView(frame: view.frame)
             productView.configOf(product: product)
             topProductStackView.addArrangedSubview(productView)
             productView.onTapped = {
@@ -242,7 +242,7 @@ class CatalogViewController: UIViewController {
                     horizontal.addArrangedSubview(emptyView)
                     return
                 }
-                let productView = ProductView()
+                let productView = ProductView(frame: view.frame)
                 productView.configOf(product: menu.products[row * 2 + i])
                 productView.onTapped = {
                     let vc = ProductViewController(product: self.menu.products[row * 2 + i])

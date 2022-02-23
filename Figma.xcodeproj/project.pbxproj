@@ -278,7 +278,6 @@
 		EDAF109327C4ECF50001ACF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EDAF107227C4E9730001ACF2 /* ProductView.swift */,
 				EDAF107427C4E9790001ACF2 /* CommentCell.swift */,
 			);
 			path = Views;
@@ -314,6 +313,7 @@
 		EDAF109727C4ED590001ACF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EDAF107227C4E9730001ACF2 /* ProductView.swift */,
 				EDAF108327C4E9AC0001ACF2 /* AdvertView.swift */,
 			);
 			path = Views;
