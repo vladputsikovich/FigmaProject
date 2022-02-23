@@ -109,7 +109,6 @@ class Menu {
     }
 }
 
-
 class Shops {
     var shops = [
         Shop(latitude: 20, longitude: 20, name: "sdf", phoneNumber: "sdfsdf"),

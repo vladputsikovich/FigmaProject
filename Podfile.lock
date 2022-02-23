@@ -1,0 +1,30 @@
+PODS:
+  - DTTextField (0.7.0)
+  - Realm (10.22.0):
+    - Realm/Headers (= 10.22.0)
+  - Realm/Headers (10.22.0)
+  - RealmSwift (10.22.0):
+    - Realm (= 10.22.0)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - DTTextField
+  - RealmSwift
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - DTTextField
+    - Realm
+    - RealmSwift
+    - SnapKit
+
+SPEC CHECKSUMS:
+  DTTextField: 768d5991211599145f289971e5936f8bb29990bb
+  Realm: d9e4e5877095a6722145811f56fe89a531c9659d
+  RealmSwift: e4191b4b957fcfcbed23751ec65eec98f8173ab5
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: fb4d8ce6689d3618f161350bd113acabba0e45e6
+
+COCOAPODS: 1.11.2

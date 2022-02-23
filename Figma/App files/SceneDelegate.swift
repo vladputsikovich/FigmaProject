@@ -20,13 +20,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        let navigationController = UINavigationController(rootViewController: MainTapBarViewController())
-//        if LoginService().userIsLogined() {
-//            navigationController = UINavigationController(rootViewController: MainTapBarViewController())
-//        } else {
-//            navigationController = UINavigationController(rootViewController: SignUpViewController())
-//        }
+        let navigationController = UINavigationController(
+            rootViewController: LoginService().userIsLogined() ?
+                MainTapBarViewController() :
+                SignUpViewController()
+        )
         window?.rootViewController = navigationController
+    }
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else {
+            return
+        }
+        window.rootViewController = vc
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
