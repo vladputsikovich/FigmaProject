@@ -62,9 +62,14 @@ class CatalogViewController: UIViewController {
         createProductsStackView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden = true
         catalogScrollView.contentSize = CGSize(width: view.frame.width, height: catalogStackView.frame.height)
         topProductScrollView.contentSize = CGSize(width: topProductStackView.frame.width + 20, height: .zero)
         advertScrollView.contentSize = CGSize(width: advertStackView.frame.width, height: .zero)

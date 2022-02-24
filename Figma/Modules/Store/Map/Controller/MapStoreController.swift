@@ -46,7 +46,7 @@ class MapStoreController: UIViewController {
         print(view.frame)
         
         shopsMap.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(30)
             make.left.equalToSuperview()
             make.width.equalTo(view.frame.width)
             make.height.equalTo(view.frame.height - view.frame.height / Constants.mapHeightDevider)

@@ -13,16 +13,15 @@ import MapKit
 // MARK: Constants
 
 fileprivate struct Constants {
-    static let cellIdentificator = "cell"
+    static let cellIdentificator = "storeCell"
     static let shopTableHeightDevider: CGFloat = 4
 }
 
 class StoreListController: UIViewController {
     
-    // MARK: Property
+    // MARK: Properties
     
-    var shops = Shops()
-    
+    private let shopsList = Shops()
     private let shopTable = UITableView()
     
     // MARK: View lifecycle
@@ -30,9 +29,10 @@ class StoreListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createTable()
+        view.backgroundColor = .white
     }
     
-    // MARK: Methods for create view elements
+    // MARK: Func for create view elements
     
     private func createTable() {
         view.addSubview(shopTable)
@@ -40,8 +40,11 @@ class StoreListController: UIViewController {
         shopTable.dataSource = self
         shopTable.register(StoreCell.self, forCellReuseIdentifier: Constants.cellIdentificator)
         
+        let window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        let topPadding = window?.safeAreaInsets.top ?? .zero
+        
         shopTable.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(topPadding + 10)
             make.left.equalToSuperview()
             make.width.equalTo(view.frame.width)
             make.height.equalTo(view.frame.height - view.frame.height / Constants.shopTableHeightDevider)
@@ -59,13 +62,15 @@ extension StoreListController: UITableViewDelegate {
 
 extension StoreListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shops.shops.count
+        return shopsList.shops.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = shopTable.dequeueReusableCell(withIdentifier: "cell") as? StoreCell else
-        { return  UITableViewCell() }
-        let currentStore = shops.shops[indexPath.item]
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.cellIdentificator,
+            for: indexPath
+        ) as? StoreCell else { return  UITableViewCell() }
+        let currentStore = shopsList.shops[indexPath.item]
         MapService().infoCurrentLocation(
             location: CLLocation(latitude: currentStore.latitude, longitude: currentStore.longitude),
             name: currentStore.name,

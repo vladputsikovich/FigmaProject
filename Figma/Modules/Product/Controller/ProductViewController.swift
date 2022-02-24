@@ -10,6 +10,8 @@ import UIKit
 
 class ProductViewController: UIViewController {
     
+    // MARK: Properties
+    
     private var productModel: Product?
     
     private let scrollView = UIScrollView()
@@ -26,6 +28,8 @@ class ProductViewController: UIViewController {
     
     private let commentTable = IntrinsicTableView()
     
+    // MARK: Init
+    
     init(product: Product) {
         self.productModel = product
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +39,8 @@ class ProductViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: App lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createScrollView()
@@ -43,11 +49,18 @@ class ProductViewController: UIViewController {
         createTableComments()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden = false
         scrollView.contentSize = CGSize(width: view.frame.width, height: contentStackView.frame.height)
     }
+    
+    // MARK: Func for create UI elements
     
     private func createScrollView() {
         view.addSubview(scrollView)
@@ -146,6 +159,8 @@ class ProductViewController: UIViewController {
         return headerView
     }
 }
+
+// MARK: Class for tableview(get full contentSize)
 
 open class IntrinsicTableView: UITableView {
     override public var contentSize: CGSize {
